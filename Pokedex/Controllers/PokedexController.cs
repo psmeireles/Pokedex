@@ -3,7 +3,7 @@
 namespace Pokedex.Controllers
 {
     [ApiController]
-    [Route("pokedex")]
+    [Route("api/pokedex")]
     public class PokedexController : ControllerBase
     {
         [HttpGet]

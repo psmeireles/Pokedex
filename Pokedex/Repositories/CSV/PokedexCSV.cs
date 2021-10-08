@@ -73,10 +73,8 @@ namespace Pokedex.Repositories.CSV
             _database[currentIndex] = obj;
         }
 
-        public IEnumerable<Pokemon> GetAll()
-        {
-            throw new NotImplementedException();
-        }
+        public IEnumerable<Pokemon> GetPaged(int pageNumber, int pageSize) => 
+            _database.Skip(pageNumber * pageSize).Take(pageSize);
 
         public Pokemon GetById(int id)
         {

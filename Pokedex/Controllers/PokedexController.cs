@@ -14,6 +14,14 @@ namespace Pokedex.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int id) => Json(_service.GetById(id));
         
+        [HttpGet("all")]
+        public IActionResult GetPaged(int pageNumber = 0, int pageSize = 10)
+        {
+            var size = pageSize > 50 ? 50 : pageSize;
+            var result = _service.GetPaged(pageNumber, size);
+            return Json(result);
+        }
+
         [HttpPost]
         public IActionResult Create([FromBody]CreatePokemonRequest request) => Json(_service.Create(request));
         

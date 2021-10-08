@@ -15,12 +15,8 @@ namespace Pokedex.Controllers
         public IActionResult Get(int id) => Json(_service.GetById(id));
         
         [HttpPost]
-        public IActionResult Create([FromBody]CreatePokemonRequest request)
-        {
-            _service.Create(request);
-            return Ok();
-        }
-        
+        public IActionResult Create([FromBody]CreatePokemonRequest request) => Json(_service.Create(request));
+
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {

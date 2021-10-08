@@ -5,13 +5,13 @@ namespace Pokedex.Repositories
 {
     public interface IRepository<T>  
     {  
-        public Task<T> Create(T obj);  
+        public T Create(T obj);
   
         public void Update(T obj);  
   
         public IEnumerable<T> GetAll();  
   
-        public T GetById(int id);  
+        public T GetById(int id);
   
         public void Delete(int id);  
   

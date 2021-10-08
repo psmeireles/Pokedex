@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Pokedex.Data;
 using Pokedex.Services;
 
 namespace Pokedex.Controllers
@@ -12,6 +13,13 @@ namespace Pokedex.Controllers
 
         [HttpGet("{id}")]
         public IActionResult Get(int id) => Json(_service.GetById(id));
+        
+        [HttpPost]
+        public IActionResult Create([FromBody]CreatePokemonRequest request)
+        {
+            _service.Create(request);
+            return Ok();
+        }
         
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)

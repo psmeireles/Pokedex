@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using Pokedex.Data;
 using Type = Pokedex.Data.Type;
@@ -52,10 +53,13 @@ namespace Pokedex.Repositories.CSV
         {
             _database = InitializeDatabase();
         }
-        
-        public Task<Pokemon> Create(Pokemon obj)
+
+        public Pokemon Create(Pokemon obj)
         {
-            throw new NotImplementedException();
+            var last = _database.Last();
+            obj.Id = last.Id + 1;
+            _database.Add(obj);
+            return obj;
         }
 
         public void Update(Pokemon obj)

@@ -14,7 +14,9 @@ namespace Pokedex.Repositories.CSV
         private List<Pokemon> InitializeDatabase()
         {
             var list = new List<Pokemon>();
-            using var reader = new StreamReader("Database.csv");
+            using var reader = new StreamReader("Repositories/CSV/Database.csv");
+            // skip first line with column names
+            reader.ReadLine();
             while (!reader.EndOfStream)
             {
                 var line = reader.ReadLine();
@@ -30,7 +32,7 @@ namespace Pokedex.Repositories.CSV
                     Id = int.Parse(values[0]),
                     Name = values[1],
                     Type1 = Enum.Parse<Type>(values[2]),
-                    Type2 = Enum.Parse<Type>(values[3]),
+                    Type2 = values[3] == string.Empty ? null : Enum.Parse<Type>(values[3]),
                     Total = int.Parse(values[4]),
                     HP = int.Parse(values[5]),
                     Attack = int.Parse(values[6]),

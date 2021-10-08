@@ -14,6 +14,7 @@ using Microsoft.OpenApi.Models;
 using Pokedex.Data;
 using Pokedex.Repositories;
 using Pokedex.Repositories.CSV;
+using Pokedex.Services;
 
 namespace Pokedex
 {
@@ -30,6 +31,7 @@ namespace Pokedex
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<IRepository<Pokemon>,PokedexCSV>();
+            services.AddTransient<PokedexService,PokedexService>();
             services.AddControllers();
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "Pokedex", Version = "v1"}); });
         }

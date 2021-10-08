@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Pokedex.Data;
-using Pokedex.Repositories;
+using Pokedex.Services;
 
 namespace Pokedex.Controllers
 {
@@ -8,14 +7,11 @@ namespace Pokedex.Controllers
     [Route("api/pokedex")]
     public class PokedexController : ControllerBase
     {
-        private readonly IRepository<Pokemon> _Repository;
+        private readonly PokedexService _service;
         
-        public PokedexController(IRepository<Pokemon> repository) => _Repository = repository;
+        public PokedexController(PokedexService service) => _service = service;
 
-        [HttpGet]
-        public ActionResult Get()
-        {
-            return Ok();
-        }
+        [HttpGet("{id}")]
+        public IActionResult Get(int id) => new JsonResult(_service.GetById(id));
     }
 }

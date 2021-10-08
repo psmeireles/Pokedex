@@ -70,7 +70,9 @@ namespace Pokedex.Repositories.CSV
 
         public Pokemon GetById(int id)
         {
-            throw new NotImplementedException();
+            if (id < 1 || id > _database.Count)
+                throw new Exception("Invalid id");
+            return _database[id - 1];
         }
 
         public void Delete(int id)

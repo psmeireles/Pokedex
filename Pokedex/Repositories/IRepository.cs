@@ -7,13 +7,13 @@ namespace Pokedex.Repositories
     {  
         public T Create(T obj);
   
-        public void Update(T obj);  
+        public void Update(T obj);
   
-        public IEnumerable<T> GetAll();  
+        public IEnumerable<T> GetAll();
   
         public T GetById(int id);
   
-        public void Delete(int id);  
+        public void Delete(int id);
   
     }  
 }

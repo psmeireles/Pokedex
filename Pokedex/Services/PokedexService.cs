@@ -10,5 +10,7 @@ namespace Pokedex.Services
         public PokedexService(IRepository<Pokemon> repository) => _repository = repository;
 
         public Pokemon GetById(int id) => _repository.GetById(id);
+        
+        public void DeleteById(int id) => _repository.Delete(id);
     }
 }

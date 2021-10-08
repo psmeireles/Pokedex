@@ -12,5 +12,12 @@ namespace Pokedex.Controllers
 
         [HttpGet("{id}")]
         public IActionResult Get(int id) => Json(_service.GetById(id));
+        
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            _service.DeleteById(id);
+            return Ok();
+        }
     }
 }

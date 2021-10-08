@@ -32,7 +32,7 @@ namespace Pokedex.Controllers
         public IActionResult Create([FromBody]CreatePokemonRequest request) => Json(_service.Create(request));
         
         [HttpPut("{id}")]
-        public IActionResult Create(int id, [FromBody]UpdatePokemonRequest request)
+        public IActionResult Update(int id, [FromBody]UpdatePokemonRequest request)
         {
             _service.Update(id, request);
             return Ok();

@@ -12,8 +12,14 @@ namespace Pokedex.Controllers
         public PokedexController(PokedexService service) => _service = service;
 
         [HttpGet("{id}")]
-        public IActionResult Get(int id) => Json(_service.GetById(id));
-        
+        public IActionResult Get(int id)
+        {
+            var result = _service.GetById(id);
+            if (result is null)
+                return NotFound(new {Message = "Pokemon not found"});
+            return Json(result);
+        }
+
         [HttpGet("all")]
         public IActionResult GetPaged(int pageNumber = 0, int pageSize = 10)
         {

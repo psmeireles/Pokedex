@@ -30,6 +30,24 @@ namespace Pokedex.Services
             });
             return created;
         }
+        
+        public void Update(int id, UpdatePokemonRequest request) =>
+            _repository.Update(new Pokemon
+            {
+                Id = id,
+                Name = request.Name,
+                Type1 = request.Type1,
+                Type2 = request.Type2,
+                Total = request.Total,
+                HP = request.HP,
+                Attack = request.Attack,
+                Defense = request.Defense,
+                SpAtk = request.SpAtk,
+                SpDef = request.SpDef,
+                Speed = request.Speed,
+                Generation = request.Generation,
+                Legendary = request.Legendary,
+            });
 
         public void DeleteById(int id) => _repository.Delete(id);
     }

@@ -64,7 +64,13 @@ namespace Pokedex.Repositories.CSV
 
         public void Update(Pokemon obj)
         {
-            throw new NotImplementedException();
+            var id = obj.Id;
+            if (id < 1 || id > _database.Count)
+                throw new Exception("Invalid id");
+            var currentIndex = _database.FindIndex(pokemon => pokemon.Id == id);
+            if (currentIndex == -1)
+                throw new Exception("Invalid id");
+            _database[currentIndex] = obj;
         }
 
         public IEnumerable<Pokemon> GetAll()

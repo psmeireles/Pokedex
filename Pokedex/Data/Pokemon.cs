@@ -1,7 +1,10 @@
-﻿namespace Pokedex.Data
+﻿using System.Text.Json.Serialization;
+
+namespace Pokedex.Data
 {
     public class Pokemon
     {
+        [JsonPropertyName("#")]
         public int Id { get; set; }
         public string Name { get; set; }
         public Type Type1 { get; set; }

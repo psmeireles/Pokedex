@@ -12,7 +12,7 @@ namespace Pokedex.Controllers
         public PokedexController(PokedexService service) => _service = service;
 
         [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        public IActionResult Get(uint id)
         {
             var result = _service.GetById(id);
             if (result is null)
@@ -32,14 +32,14 @@ namespace Pokedex.Controllers
         public IActionResult Create([FromBody]CreatePokemonRequest request) => Json(_service.Create(request));
         
         [HttpPut("{id}")]
-        public IActionResult Update(int id, [FromBody]UpdatePokemonRequest request)
+        public IActionResult Update(uint id, [FromBody]UpdatePokemonRequest request)
         {
             _service.Update(id, request);
             return Ok();
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public IActionResult Delete(uint id)
         {
             _service.DeleteById(id);
             return Ok();

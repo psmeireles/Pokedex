@@ -11,9 +11,9 @@ namespace Pokedex.Repositories
   
         public IEnumerable<T> GetPaged(int pageNumber, int pageSize);
   
-        public T GetById(int id);
+        public T GetById(uint id);
   
-        public void Delete(int id);
+        public void Delete(uint id);
   
     }  
 }

@@ -5,18 +5,18 @@ namespace Pokedex.Data
     public class Pokemon
     {
         [JsonPropertyName("#")]
-        public int Id { get; set; }
+        public uint Id { get; set; }
         public string Name { get; set; }
         public Type Type1 { get; set; }
         public Type? Type2 { get; set; }
-        public int Total { get; set; }
-        public int HP { get; set; }
-        public int Attack { get; set; }
-        public int Defense { get; set; }
-        public int SpAtk { get; set; }
-        public int SpDef { get; set; }
-        public int Speed { get; set; }
-        public int Generation { get; set; }
+        public uint Total { get; set; }
+        public uint HP { get; set; }
+        public uint Attack { get; set; }
+        public uint Defense { get; set; }
+        public uint SpAtk { get; set; }
+        public uint SpDef { get; set; }
+        public uint Speed { get; set; }
+        public uint Generation { get; set; }
         public bool Legendary { get; set; }
     }
 }

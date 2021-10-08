@@ -10,7 +10,7 @@ namespace Pokedex.Services
   
         public PokedexService(IRepository<Pokemon> repository) => _repository = repository;
 
-        public Pokemon GetById(int id) => _repository.GetById(id);
+        public Pokemon GetById(uint id) => _repository.GetById(id);
 
         public IEnumerable<Pokemon> GetPaged(int pageNumber, int pageSize) =>
             _repository.GetPaged(pageNumber, pageSize);
@@ -35,7 +35,7 @@ namespace Pokedex.Services
             return created;
         }
         
-        public void Update(int id, UpdatePokemonRequest request) =>
+        public void Update(uint id, UpdatePokemonRequest request) =>
             _repository.Update(new Pokemon
             {
                 Id = id,
@@ -53,6 +53,6 @@ namespace Pokedex.Services
                 Legendary = request.Legendary,
             });
 
-        public void DeleteById(int id) => _repository.Delete(id);
+        public void DeleteById(uint id) => _repository.Delete(id);
     }
 }

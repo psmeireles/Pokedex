@@ -30,18 +30,18 @@ namespace Pokedex.Repositories.CSV
                     
                 list.Add(new Pokemon
                 {
-                    Id = int.Parse(values[0]),
+                    Id = uint.Parse(values[0]),
                     Name = values[1],
                     Type1 = Enum.Parse<Type>(values[2]),
                     Type2 = values[3] == string.Empty ? null : Enum.Parse<Type>(values[3]),
-                    Total = int.Parse(values[4]),
-                    HP = int.Parse(values[5]),
-                    Attack = int.Parse(values[6]),
-                    Defense = int.Parse(values[7]),
-                    SpAtk = int.Parse(values[8]),
-                    SpDef = int.Parse(values[9]),
-                    Speed = int.Parse(values[10]),
-                    Generation = int.Parse(values[11]),
+                    Total = uint.Parse(values[4]),
+                    HP = uint.Parse(values[5]),
+                    Attack = uint.Parse(values[6]),
+                    Defense = uint.Parse(values[7]),
+                    SpAtk = uint.Parse(values[8]),
+                    SpDef = uint.Parse(values[9]),
+                    Speed = uint.Parse(values[10]),
+                    Generation = uint.Parse(values[11]),
                     Legendary = values[12] == "True",
                 });
             }
@@ -76,14 +76,14 @@ namespace Pokedex.Repositories.CSV
         public IEnumerable<Pokemon> GetPaged(int pageNumber, int pageSize) => 
             _database.Skip(pageNumber * pageSize).Take(pageSize);
 
-        public Pokemon GetById(int id)
+        public Pokemon GetById(uint id)
         {
             if (id < 1 || id > _database.Count)
                 return null;
             return _database.Find(pokemon => pokemon.Id == id);
         }
 
-        public void Delete(int id)
+        public void Delete(uint id)
         {
             if (id < 1 || id > _database.Count)
                 throw new Exception("Invalid id");

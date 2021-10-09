@@ -28,6 +28,17 @@ namespace TestPokedex
             var pokemon = _repository.GetById(uintId);
             Assert.AreEqual(pokemon.Id, uintId);
         }
+        
+        [DataRow(0)]
+        [DataRow(-1)]
+        [DataRow(722)]
+        [DataTestMethod]
+        public void GetById_DoesNotExist_ReturnsNull(int id)
+        {
+            var uintId = (uint) id;
+            var pokemon = _repository.GetById(uintId);
+            Assert.IsNull(pokemon);
+        }
         [TestMethod]
         public void TestMethod1()
         {

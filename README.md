@@ -78,6 +78,7 @@ Update pokémon by id.
 | 400 | Invalid number |
 | 400 | Invalid name |
 | 400 | Invalid generation |
+| 404 | Pokémon not found |
 
 ### DELETE `/api/pokedex/{id}`
 

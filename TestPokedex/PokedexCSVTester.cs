@@ -100,6 +100,7 @@ namespace TestPokedex
             };
             var newPokemon = _repository.Create(pokemon);
             Assert.AreEqual(pokemon.Name, newPokemon.Name);
+            Assert.AreEqual(pokemon.Number, newPokemon.Number);
         }
         
         [TestMethod]

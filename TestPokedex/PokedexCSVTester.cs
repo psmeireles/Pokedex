@@ -83,5 +83,19 @@ namespace TestPokedex
             var newCount = _repository.GetCount();
             Assert.AreEqual(previousCount + 1, newCount);
         }
+        
+        [DataRow("TestPokemon")]
+        [DataRow("TestPokemon2")]
+        [DataTestMethod]
+        public void Create_Success_ReturnsCreatedPokemonWithSameName(string name)
+        {
+            var pokemon = new Pokemon
+            {
+                Name = name,
+                Generation = 1
+            };
+            var newPokemon = _repository.Create(pokemon);
+            Assert.AreEqual(pokemon.Name, newPokemon.Name);
+        }
     }
 }

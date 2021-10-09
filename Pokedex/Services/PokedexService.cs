@@ -38,6 +38,7 @@ namespace Pokedex.Services
             _repository.Update(new Pokemon
             {
                 Id = id,
+                Number = request.Number,
                 Name = request.Name,
                 Type1 = request.Type1,
                 Type2 = request.Type2,

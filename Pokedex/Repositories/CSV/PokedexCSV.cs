@@ -17,6 +17,7 @@ namespace Pokedex.Repositories.CSV
             using var reader = new StreamReader("D:/Projects/Pokedex/Pokedex/Repositories/CSV/Database.csv");
             // skip first line with column names
             reader.ReadLine();
+            uint seqId = 1;
             while (!reader.EndOfStream)
             {
                 var line = reader.ReadLine();
@@ -26,10 +27,11 @@ namespace Pokedex.Repositories.CSV
                 var values = line.Split(',');
                 if (values.Length != 13)
                     throw new Exception("Error on database initialization");
-                    
+                
                 list.Add(new Pokemon
                 {
-                    Id = uint.Parse(values[0]),
+                    Id = seqId,
+                    Number = uint.Parse(values[0]),
                     Name = values[1],
                     Type1 = Enum.Parse<Type>(values[2]),
                     Type2 = values[3] == string.Empty ? null : Enum.Parse<Type>(values[3]),
@@ -43,6 +45,7 @@ namespace Pokedex.Repositories.CSV
                     Generation = uint.Parse(values[11]),
                     Legendary = values[12] == "True",
                 });
+                seqId++;
             }
 
             return list;

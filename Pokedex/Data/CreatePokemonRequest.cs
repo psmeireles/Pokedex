@@ -2,6 +2,7 @@
 {
     public class CreatePokemonRequest
     {
+        public uint Number { get; set; }
         public string Name { get; set; }
         public Type Type1 { get; set; }
         public Type? Type2 { get; set; }

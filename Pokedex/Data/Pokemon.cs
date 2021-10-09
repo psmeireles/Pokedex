@@ -4,8 +4,9 @@ namespace Pokedex.Data
 {
     public class Pokemon
     {
-        [JsonPropertyName("#")]
         public uint Id { get; set; }
+        [JsonPropertyName("#")]
+        public uint Number { get; set; }
         public string Name { get; set; }
         public Type Type1 { get; set; }
         public Type? Type2 { get; set; }

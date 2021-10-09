@@ -19,6 +19,7 @@ namespace Pokedex.Controllers
 
         private static ErrorResponse PokemonNotFound => new("Pokemon not found");
         private static ErrorResponse InvalidBody => new("Invalid request body");
+        private static ErrorResponse InvalidNumber => new("Invalid number");
         private static ErrorResponse InvalidName => new("Invalid name");
         private static ErrorResponse InvalidGeneration => new("Invalid generation");
 
@@ -44,6 +45,8 @@ namespace Pokedex.Controllers
         {
             if (request is null)
                 return BadRequest(InvalidBody);
+            if (request.Number == 0)
+                return BadRequest(InvalidNumber);
             if (string.IsNullOrWhiteSpace(request.Name))
                 return BadRequest(InvalidName);
             if (request.Generation == 0)
@@ -56,6 +59,8 @@ namespace Pokedex.Controllers
         {
             if (request is null)
                 return BadRequest(InvalidBody);
+            if (request.Number == 0)
+                return BadRequest(InvalidNumber);
             if (string.IsNullOrWhiteSpace(request.Name))
                 return BadRequest(InvalidName);
             if (request.Generation == 0)

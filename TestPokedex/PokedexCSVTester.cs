@@ -111,5 +111,18 @@ namespace TestPokedex
             var newPokemon = _repository.Create(pokemon);
             Assert.AreEqual(LAST_ID + 1, newPokemon.Id);
         }
+        
+        [TestMethod]
+        public void Create_AfterDeleteLast_ReturnsWithIdEqualsToLast()
+        {
+            var pokemon = new Pokemon
+            {
+                Name = "TestPokemon",
+                Generation = 1
+            };
+            _repository.Delete(LAST_ID);
+            var newPokemon = _repository.Create(pokemon);
+            Assert.AreEqual(LAST_ID, newPokemon.Id);
+        }
     }
 }

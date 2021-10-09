@@ -145,5 +145,22 @@ namespace TestPokedex
             var newPokemon = _repository.Create(pokemon);
             Assert.AreEqual((uint)1, newPokemon.Id);
         }
+        
+                
+        [TestMethod]
+        public void GetById_CreatedAfterDeletion_ReturnsIdBiggerThanCount()
+        {
+            _repository.Delete(1);
+            var pokemon = new Pokemon
+            {
+                Number = 1,
+                Name = "TestPokemon",
+                Generation = 1
+            };
+            var newPokemon = _repository.Create(pokemon);
+            var createdPokemon = _repository.GetById(newPokemon.Id);
+            var count = _repository.GetCount();
+            Assert.IsTrue(createdPokemon.Id > count);
+        }
     }
 }

@@ -179,5 +179,20 @@ namespace TestPokedex
             Assert.AreNotEqual(oldPokemon.Name, newPokemon.Name);
             Assert.AreEqual(pokemon.Name, newPokemon.Name);
         }
+        
+        [TestMethod]
+        public void Update_NonExistent_DoesNothing()
+        {
+            var pokemon = new Pokemon
+            {
+                Id = LAST_ID + 1,
+                Number = 1,
+                Name = "TestPokemon",
+                Generation = 1
+            };
+            _repository.Update(pokemon);
+            var newPokemon = _repository.GetById(pokemon.Id);
+            Assert.IsNull(newPokemon);
+        }
     }
 }

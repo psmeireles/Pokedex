@@ -48,6 +48,19 @@ namespace TestPokedex
             var newCount = _repository.GetCount();
             Assert.AreEqual(previousCount - 1, newCount);
         }
+        
+        [DataRow(0)]
+        [DataRow(-1)]
+        [DataRow(722)]
+        [DataTestMethod]
+        public void Delete_PokemonNotExists_NothingHappens(int id)
+        {
+            var previousCount = _repository.GetCount();
+            var uintId = (uint) id;
+            _repository.Delete(uintId);
+            var newCount = _repository.GetCount();
+            Assert.AreEqual(previousCount, newCount);
+        }
         [TestMethod]
         public void TestMethod1()
         {

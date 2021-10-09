@@ -5,7 +5,7 @@
         public string Name { get; set; }
         public Type Type1 { get; set; }
         public Type? Type2 { get; set; }
-        public uint Total { get; set; }
+        public uint Total => HP + Attack + Defense + SpAtk + SpDef + Speed;
         public uint HP { get; set; }
         public uint Attack { get; set; }
         public uint Defense { get; set; }

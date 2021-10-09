@@ -76,6 +76,8 @@ namespace Pokedex.Repositories.CSV
         public IEnumerable<Pokemon> GetPaged(int pageNumber, int pageSize) => 
             _database.Skip(pageNumber * pageSize).Take(pageSize);
 
+        public int GetCount() => _database.Count;
+
         public Pokemon GetById(uint id)
         {
             if (id < 1 || id > _database.Count)

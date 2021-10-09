@@ -12,9 +12,9 @@ namespace Pokedex.Services
 
         public Pokemon GetById(uint id) => _repository.GetById(id);
 
-        public IEnumerable<Pokemon> GetPaged(int pageNumber, int pageSize) =>
-            _repository.GetPaged(pageNumber, pageSize);
-        
+        public PaginatedList<Pokemon> GetPaged(int pageNumber, int pageSize) => 
+            new(_repository.GetPaged(pageNumber, pageSize), pageNumber, pageSize, _repository.GetCount());
+
         public Pokemon Create(CreatePokemonRequest request)
         {
             var created = _repository.Create(new Pokemon

@@ -10,6 +10,8 @@ namespace Pokedex.Repositories
         public void Update(T obj);
   
         public IEnumerable<T> GetPaged(int pageNumber, int pageSize);
+        
+        public int GetCount();
   
         public T GetById(uint id);
   

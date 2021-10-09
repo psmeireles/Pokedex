@@ -1,3 +1,4 @@
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Pokedex.Data;
 using Pokedex.Repositories;
@@ -193,6 +194,16 @@ namespace TestPokedex
             _repository.Update(pokemon);
             var newPokemon = _repository.GetById(pokemon.Id);
             Assert.IsNull(newPokemon);
+        }
+        
+        [DataRow(1)]
+        [DataRow(15)]
+        [DataRow(50)]
+        [DataTestMethod]
+        public void GetPaged_FirstPage_ReturnsCorrectNumberOfPages(int pageSize)
+        {
+            var page = _repository.GetPaged(0, pageSize);
+            Assert.AreEqual(page.Count(), pageSize);
         }
     }
 }

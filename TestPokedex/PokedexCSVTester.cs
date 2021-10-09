@@ -200,14 +200,14 @@ namespace TestPokedex
         [DataRow(15)]
         [DataRow(50)]
         [DataTestMethod]
-        public void GetPaged_FirstPage_ReturnsCorrectNumberOfPages(int pageSize)
+        public void GetPaged_FirstPage_ReturnsCorrectNumberOfItems(int pageSize)
         {
             var page = _repository.GetPaged(0, pageSize);
             Assert.AreEqual(page.Count(), pageSize);
         }
         
         [TestMethod]
-        public void GetPaged_PageSizeGreaterThanDatabaseCount_ReturnsCorrectNumberOfPages()
+        public void GetPaged_PageSizeGreaterThanDatabaseCount_ReturnsCorrectNumberOfItems()
         {
             var page = _repository.GetPaged(0, (int)LAST_ID + 1);
             Assert.AreEqual(page.Count(), _repository.GetCount());

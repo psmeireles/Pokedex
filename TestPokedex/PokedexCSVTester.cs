@@ -39,6 +39,15 @@ namespace TestPokedex
             var pokemon = _repository.GetById(uintId);
             Assert.IsNull(pokemon);
         }
+
+        [TestMethod]
+        public void Delete_Success()
+        {
+            var previousCount = _repository.GetCount();
+            _repository.Delete(1);
+            var newCount = _repository.GetCount();
+            Assert.AreEqual(previousCount - 1, newCount);
+        }
         [TestMethod]
         public void TestMethod1()
         {

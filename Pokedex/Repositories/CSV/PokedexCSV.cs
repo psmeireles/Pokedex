@@ -67,7 +67,7 @@ namespace Pokedex.Repositories.CSV
         public void Update(Pokemon obj)
         {
             var id = obj.Id;
-            if (id < 1 || id > _database.Count)
+            if (id < 1)
                 return;
             var currentIndex = _database.FindIndex(pokemon => pokemon.Id == id);
             if (currentIndex == -1)

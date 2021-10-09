@@ -10,7 +10,7 @@ namespace TestPokedex
     {
         private IRepository<Pokemon> _repository;
         
-        private const uint LAST_ID = 721;
+        private const uint LAST_ID = 800;
 
         [TestInitialize]
         public void TestInitialize()
@@ -22,7 +22,7 @@ namespace TestPokedex
         [DataRow(1)]
         [DataRow(10)]
         [DataRow(100)]
-        [DataRow(721)]
+        [DataRow(800)]
         [DataTestMethod]
         public void GetById_Success_ReturnsPokemonWithRequestedId(int id)
         {
@@ -33,7 +33,7 @@ namespace TestPokedex
         
         [DataRow(0)]
         [DataRow(-1)]
-        [DataRow(722)]
+        [DataRow(801)]
         [DataTestMethod]
         public void GetById_DoesNotExist_ReturnsNull(int id)
         {
@@ -53,7 +53,7 @@ namespace TestPokedex
         
         [DataRow(0)]
         [DataRow(-1)]
-        [DataRow(722)]
+        [DataRow(801)]
         [DataTestMethod]
         public void Delete_PokemonNotExists_NothingHappens(int id)
         {
@@ -77,6 +77,7 @@ namespace TestPokedex
         {
             var pokemon = new Pokemon
             {
+                Number = 1,
                 Name = "TestPokemon",
                 Generation = 1
             };
@@ -89,10 +90,11 @@ namespace TestPokedex
         [DataRow("TestPokemon")]
         [DataRow("TestPokemon2")]
         [DataTestMethod]
-        public void Create_Success_ReturnsCreatedPokemonWithSameName(string name)
+        public void Create_Success_ReturnsCreatedPokemonWithSameNameAndNumber(string name)
         {
             var pokemon = new Pokemon
             {
+                Number = 1,
                 Name = name,
                 Generation = 1
             };
@@ -105,6 +107,7 @@ namespace TestPokedex
         {
             var pokemon = new Pokemon
             {
+                Number = 1,
                 Name = "TestPokemon",
                 Generation = 1
             };
@@ -117,6 +120,7 @@ namespace TestPokedex
         {
             var pokemon = new Pokemon
             {
+                Number = 1,
                 Name = "TestPokemon",
                 Generation = 1
             };

@@ -55,8 +55,8 @@ namespace Pokedex.Repositories.CSV
 
         public Pokemon Create(Pokemon obj)
         {
-            var last = _database.Last();
-            obj.Id = last.Id + 1;
+            var id = _database.Count == 0 ? 1 : _database.Last().Id + 1;
+            obj.Id = id;
             _database.Add(obj);
             return obj;
         }

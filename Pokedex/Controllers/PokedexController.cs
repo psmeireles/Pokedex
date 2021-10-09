@@ -60,6 +60,9 @@ namespace Pokedex.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(uint id)
         {
+            var existingPokemon = _service.GetById(id);
+            if (existingPokemon is null)
+                return NotFound(new {Message = "Pokemon not found"});
             _service.DeleteById(id);
             return Ok();
         }

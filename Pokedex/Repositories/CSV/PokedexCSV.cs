@@ -88,7 +88,7 @@ namespace Pokedex.Repositories.CSV
         public void Delete(uint id)
         {
             if (id < 1 || id > _database.Count)
-                throw new Exception("Invalid id");
+                return;
             var index = _database.FindIndex(pokemon => pokemon.Id == id);
             if (index == -1)
                 return;

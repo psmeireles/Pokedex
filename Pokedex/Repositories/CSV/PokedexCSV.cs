@@ -82,7 +82,7 @@ namespace Pokedex.Repositories.CSV
 
         public Pokemon GetById(uint id)
         {
-            if (id < 1 || id > _database.Count)
+            if (id < 1)
                 return null;
             return _database.Find(pokemon => pokemon.Id == id);
         }

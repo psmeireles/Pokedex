@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Pokedex.Data;
 using Pokedex.Repositories;
 

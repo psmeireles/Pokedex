@@ -9,6 +9,8 @@ namespace TestPokedex
     public class PokedexCSVTester
     {
         private IRepository<Pokemon> _repository;
+        
+        private const uint LAST_ID = 721;
 
         [TestInitialize]
         public void TestInitialize()
@@ -96,6 +98,18 @@ namespace TestPokedex
             };
             var newPokemon = _repository.Create(pokemon);
             Assert.AreEqual(pokemon.Name, newPokemon.Name);
+        }
+        
+        [TestMethod]
+        public void Create_Success_ReturnsPokemonWithIdEqualsLastIdPlusOne()
+        {
+            var pokemon = new Pokemon
+            {
+                Name = "TestPokemon",
+                Generation = 1
+            };
+            var newPokemon = _repository.Create(pokemon);
+            Assert.AreEqual(LAST_ID + 1, newPokemon.Id);
         }
     }
 }

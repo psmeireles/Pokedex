@@ -41,7 +41,7 @@ namespace TestPokedex
         }
 
         [TestMethod]
-        public void Delete_Success()
+        public void Delete_Success_DecreasesCount()
         {
             var previousCount = _repository.GetCount();
             _repository.Delete(1);

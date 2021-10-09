@@ -219,5 +219,14 @@ namespace TestPokedex
             var page = _repository.GetPaged(0, -10);
             Assert.AreEqual(0, page.Count());
         }
+        
+        [TestMethod]
+        public void GetPaged_NegativePageNumber_ReturnsFirstPage()
+        {
+            var page = _repository.GetPaged(-1, 1).ToList();
+            var first = page[0]; 
+            Assert.AreEqual(1, page.Count);
+            Assert.AreEqual((uint)1, first.Id);
+        }
     }
 }

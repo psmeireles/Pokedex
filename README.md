@@ -1,6 +1,6 @@
 # Pokédex
 
-This app exposes a REST API to perform CRUD operations on a Pokédex.
+This app exposes a REST API to perform CRUD operations on a Pokédex. A CSV file is loaded on startup and used as database.
 
 Keep in mind that the `id` field required by the APIs is not the pokémon number, since multiple pokémons may have the same number (e.g. Charizard, CharizardMega Charizard X, CharizardMega Charizard Y).
 

@@ -18,6 +18,7 @@ namespace Pokedex.Services
         {
             var created = _repository.Create(new Pokemon
             {
+                Number = request.Number,
                 Name = request.Name,
                 Type1 = request.Type1,
                 Type2 = request.Type2,

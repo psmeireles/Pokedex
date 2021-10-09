@@ -66,10 +66,10 @@ namespace Pokedex.Repositories.CSV
         {
             var id = obj.Id;
             if (id < 1 || id > _database.Count)
-                throw new Exception("Invalid id");
+                return;
             var currentIndex = _database.FindIndex(pokemon => pokemon.Id == id);
             if (currentIndex == -1)
-                throw new Exception("Invalid id");
+                return;
             _database[currentIndex] = obj;
         }
 

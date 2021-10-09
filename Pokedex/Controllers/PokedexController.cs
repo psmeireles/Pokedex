@@ -49,6 +49,10 @@ namespace Pokedex.Controllers
                 return BadRequest(new {Message = "Invalid name"});
             if (request.Generation == 0)
                 return BadRequest(new {Message = "Invalid generation"});
+
+            var existingPokemon = _service.GetById(id);
+            if (existingPokemon is null)
+                return NotFound(new {Message = "Pokemon not found"});
             _service.Update(id, request);
             return Ok();
         }

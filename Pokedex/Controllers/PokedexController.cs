@@ -29,11 +29,26 @@ namespace Pokedex.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create([FromBody]CreatePokemonRequest request) => Json(_service.Create(request));
-        
+        public IActionResult Create([FromBody]CreatePokemonRequest request)
+        {
+            if (request is null)
+                return BadRequest(new {Message = "Invalid request body"});
+            if (string.IsNullOrWhiteSpace(request.Name))
+                return BadRequest(new {Message = "Invalid name"});
+            if (request.Generation == 0)
+                return BadRequest(new {Message = "Invalid generation"});
+            return Json(_service.Create(request));
+        }
+
         [HttpPut("{id}")]
         public IActionResult Update(uint id, [FromBody]UpdatePokemonRequest request)
         {
+            if (request is null)
+                return BadRequest(new {Message = "Invalid request body"});
+            if (string.IsNullOrWhiteSpace(request.Name))
+                return BadRequest(new {Message = "Invalid name"});
+            if (request.Generation == 0)
+                return BadRequest(new {Message = "Invalid generation"});
             _service.Update(id, request);
             return Ok();
         }

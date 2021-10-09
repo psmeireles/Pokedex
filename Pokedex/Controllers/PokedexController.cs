@@ -11,12 +11,23 @@ namespace Pokedex.Controllers
         
         public PokedexController(PokedexService service) => _service = service;
 
+        public class ErrorResponse
+        {
+            public string Message { get; set; }
+            public ErrorResponse(string message) => Message = message;
+        }
+
+        private static ErrorResponse PokemonNotFound => new("Pokemon not found");
+        private static ErrorResponse InvalidBody => new("Invalid request body");
+        private static ErrorResponse InvalidName => new("Invalid name");
+        private static ErrorResponse InvalidGeneration => new("Invalid generation");
+
         [HttpGet("{id}")]
         public IActionResult Get(uint id)
         {
             var result = _service.GetById(id);
             if (result is null)
-                return NotFound(new {Message = "Pokemon not found"});
+                return NotFound(PokemonNotFound);
             return Json(result);
         }
 
@@ -32,11 +43,11 @@ namespace Pokedex.Controllers
         public IActionResult Create([FromBody]CreatePokemonRequest request)
         {
             if (request is null)
-                return BadRequest(new {Message = "Invalid request body"});
+                return BadRequest(InvalidBody);
             if (string.IsNullOrWhiteSpace(request.Name))
-                return BadRequest(new {Message = "Invalid name"});
+                return BadRequest(InvalidName);
             if (request.Generation == 0)
-                return BadRequest(new {Message = "Invalid generation"});
+                return BadRequest(InvalidGeneration);
             return Json(_service.Create(request));
         }
 
@@ -44,15 +55,15 @@ namespace Pokedex.Controllers
         public IActionResult Update(uint id, [FromBody]UpdatePokemonRequest request)
         {
             if (request is null)
-                return BadRequest(new {Message = "Invalid request body"});
+                return BadRequest(InvalidBody);
             if (string.IsNullOrWhiteSpace(request.Name))
-                return BadRequest(new {Message = "Invalid name"});
+                return BadRequest(InvalidName);
             if (request.Generation == 0)
-                return BadRequest(new {Message = "Invalid generation"});
+                return BadRequest(InvalidGeneration);
 
             var existingPokemon = _service.GetById(id);
             if (existingPokemon is null)
-                return NotFound(new {Message = "Pokemon not found"});
+                return NotFound(PokemonNotFound);
             _service.Update(id, request);
             return Ok();
         }
@@ -62,7 +73,7 @@ namespace Pokedex.Controllers
         {
             var existingPokemon = _service.GetById(id);
             if (existingPokemon is null)
-                return NotFound(new {Message = "Pokemon not found"});
+                return NotFound(PokemonNotFound);
             _service.DeleteById(id);
             return Ok();
         }

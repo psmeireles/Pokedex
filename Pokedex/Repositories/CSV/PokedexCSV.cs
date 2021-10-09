@@ -14,7 +14,7 @@ namespace Pokedex.Repositories.CSV
         private List<Pokemon> InitializeDatabase()
         {
             var list = new List<Pokemon>();
-            using var reader = new StreamReader("Repositories/CSV/Database.csv");
+            using var reader = new StreamReader("D:/Projects/Pokedex/Pokedex/Repositories/CSV/Database.csv");
             // skip first line with column names
             reader.ReadLine();
             while (!reader.EndOfStream)

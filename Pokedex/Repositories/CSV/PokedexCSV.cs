@@ -89,7 +89,7 @@ namespace Pokedex.Repositories.CSV
 
         public void Delete(uint id)
         {
-            if (id < 1 || id > _database.Count)
+            if (id < 1)
                 return;
             var index = _database.FindIndex(pokemon => pokemon.Id == id);
             if (index == -1)

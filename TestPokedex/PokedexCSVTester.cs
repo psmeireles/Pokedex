@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Pokedex.Data;
@@ -227,6 +229,24 @@ namespace TestPokedex
             var first = page[0]; 
             Assert.AreEqual(1, page.Count);
             Assert.AreEqual((uint)1, first.Id);
+        }
+        
+        [DataRow(1)]
+        [DataRow(10)]
+        [DataRow(100)]
+        [DataRow(800)]
+        [DataRow(801)]
+        [DataTestMethod]
+        public void GetPaged_GetAllPages_ReturnsWholeList(int pageSize)
+        {
+            var pages =(int) Math.Ceiling(_repository.GetCount() / (float) pageSize);
+            var list = new List<Pokemon>();
+            for (var i = 0; i < pages; i++)
+            {
+                var page = _repository.GetPaged(i, pageSize);
+                list.AddRange(page);
+            }
+            Assert.AreEqual(_repository.GetCount(), list.Count);
         }
     }
 }
